@@ -6,7 +6,7 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 20:55:24 by ajabri            #+#    #+#             */
-/*   Updated: 2024/03/06 21:58:57 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/04/15 13:08:43 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	get_init(t_ps *ps, int argc, char **argv, t_list **stack_a)
 	ps->end = ps->range;
 }
 
-void ft_do_op(char *op, t_list **a, t_list **b, t_ps *ps)
+void ft_do_op(char *op, t_list **a, t_list **b)
 {
 	if (!ft_strncmp(op, "pa\n", 3))
 		do_pa(a,b, 0);
@@ -66,7 +66,7 @@ void ft_do_op(char *op, t_list **a, t_list **b, t_ps *ps)
 		ft_error("Error");
 }
 
-void read_op(t_list **a, t_list **b, t_ps *ps)
+void read_op(t_list **a, t_list **b)
 {
     char *op;
 
@@ -75,7 +75,7 @@ void read_op(t_list **a, t_list **b, t_ps *ps)
         op = get_next_line(0);
         if (op == NULL)
             break ;
-        ft_do_op(op,a,b,ps);
+        ft_do_op(op,a,b);
         free(op);
     }
     if (check_sort(*a) && !*b)
@@ -94,5 +94,5 @@ int	main(int argc, char **argv)
 	if (argc == 1)
 		ft_error("ERROR 1");
 	get_init(&ps, argc, argv, &stack_a);
-	read_op(&stack_a, &stack_b, &ps);
+	read_op(&stack_a, &stack_b);
 }
